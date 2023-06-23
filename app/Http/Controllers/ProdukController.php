@@ -22,8 +22,7 @@ class ProdukController extends Controller
         ->get();
 
         return view('admin.produk.index', compact('produk'));
-        //compact berfungsi mengumpulkan ada membuat array
-        //yang akan dipanggil didalam view
+       
 
     }
 
@@ -101,5 +100,7 @@ class ProdukController extends Controller
     public function destroy(string $id)
     {
         //
+        
+
     }
 }

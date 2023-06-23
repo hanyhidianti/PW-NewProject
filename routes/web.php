@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProdukController;
+use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +19,16 @@ use App\Http\Controllers\ProdukController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/produk',[ProdukController::class, 'index']);
-Route::get('/produk/create',[ProdukController::class, 'create']);
-Route::post('/produk/store', [ProdukController::class, 'store']);
-Route::get('/produk/edit/{id}', [ProdukController::class, 'edit']);
-Route::post('/produk/update', [ProdukController::class, 'update']);
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::get('/produk',[ProdukController::class,'index']);
+    Route::get('/produk/pesanan',[PesananController::class,'pesanan']);
+    Route::get('/produk/create',[ProdukController::class,'create']);
+    Route::post('/produk/store',[ProdukController::class,'store']);
+    Route::get('/produk/edit/{id}',[ProdukController::class,'edit']);
+    Route::post('/produk/update',[ProdukController::class,'update']);
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

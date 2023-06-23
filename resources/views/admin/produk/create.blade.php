@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <h1>Tambah Data Produk</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <form action="{{url('produk/store')}}" method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
@@ -50,11 +52,11 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="select" class="col-4 col-form-label">Kategori Produk</label> 
+    <label for="select" class="col-4 col-form-label">KategoriProduk</label> 
     <div class="col-8">
       <select id="select" name="kategori_produk_id" class="custom-select">
-        @foreach($kategori_produk as $d)
-        <option value="{{$d->id}}">{{$d->nama}}</option>
+        @foreach($kategori_produk as $kp)
+        <option value="{{$kp->id}}">{{$kp->nama}}</option>
         @endforeach
       </select>
     </div>
@@ -65,9 +67,6 @@
     </div>
   </div>
 </form>
-
-
-
 
 
 @endsection
